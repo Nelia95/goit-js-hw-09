@@ -9,7 +9,7 @@ const btnStart = document.querySelector('button[data-start]');
 btnStart.disabled = true;
 
 let startTime = 0;
-
+// let time = 0;
 const options = {
   enableTime: true,
   time_24hr: true,
