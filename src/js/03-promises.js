@@ -22,13 +22,13 @@ formRef.addEventListener('submit', () => {
   preventDefault();
 
   for (let i = 0; i <= Number(amountEl.value); i += 1) {
-    createPromise(i, delayEl.value)
+    createPromise(i, Number(delayEl.value))
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
-    Number(delayEl.value) + Number(stepEl.value);
+    Number(delayEl.value) += Number(stepEl.value);
   }
 });
