@@ -15,21 +15,30 @@ function createPromise(position, delay) {
   });
 }
 
-formRef.addEventListener('submit', event => {
+function onFormSubmit(event) {
   event.preventDefault();
-  const {
+  let {
     elements: { delay, amount, step },
   } = event.currentTarget;
-  for (let i = 0; i <= Number(amount.value); i += 1) {
-    const positionEl = i + 1;
-    createPromise(positionEl, Number(delay.value))
+  let elDelay = Number(delay.value);
+  let elStep = Number(step.value);
+  let elAmount = Number(amount.value);
+  for (let position = 0; position <= elAmount; position += 1) {
+    createPromise(position, elDelay)
       .then(({ position, delay }) => {
+        console.log('success');
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
+        console.log('error');
         Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
-    delay += step;
+    elDelay += elStep;
   }
   event.currentTarget.reset();
-});
+  console.log(elDelay);
+  console.log(elStep);
+  console.log(elAmount);
+}
+
+formRef.addEventListener('submit', onFormSubmit);
