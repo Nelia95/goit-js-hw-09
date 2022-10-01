@@ -16,7 +16,7 @@ function createPromise(position, delay) {
 }
 
 formRef.addEventListener('submit', event => {
-  preventDefault();
+  event.preventDefault();
   const {
     elements: { delay, amount, step },
   } = event.currentTarget;
@@ -31,4 +31,5 @@ formRef.addEventListener('submit', event => {
       });
     delay += step;
   }
+  event.currentTarget.reset();
 });
