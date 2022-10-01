@@ -8,7 +8,7 @@ const btnStart = document.querySelector('button[data-start]');
 
 btnStart.disabled = true;
 
-let startTime = 0;
+let time = null;
 
 const options = {
   enableTime: true,
@@ -23,9 +23,9 @@ const options = {
       return;
     }
     btnStart.disabled = false;
-
+    time = selectedDates[0];
     btnStart.addEventListener('click', () => {
-      timer.start(timerRef, selectedDates[0]);
+      timer.start(timerRef, time);
     });
   },
 };
